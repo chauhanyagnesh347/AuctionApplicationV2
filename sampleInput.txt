@@ -1,0 +1,43 @@
+ADD_BUYER buyer1
+ADD_BUYER buyer2
+ADD_BUYER buyer3
+ADD_SELLER seller1
+CREATE_AUCTION A1 10 50 seller1
+CREATE_BID buyer1 A1 17
+CREATE_BID buyer2 A1 15
+UPDATE_BID buyer2 A1 19
+CREATE_BID buyer3 A1 19
+CLOSE_AUCTION A1
+//winner = buyer1
+
+ADD_SELLER seller2
+CREATE_AUCTION A2 5 20 seller2
+CREATE_BID buyer3 A2 25
+CREATE_BID buyer2 A2 5
+WITHDRAW_BID buyer2 A2
+CLOSE_AUCTION A2
+//no winner
+
+ADD_BUYER buyer1 20
+ADD_BUYER buyer2 20
+ADD_BUYER buyer3 30
+ADD_SELLER seller1
+ADD_SELLER seller2
+CREATE_AUCTION A1 10 50 seller1
+CREATE_AUCTION A2 5 20 seller2
+CREATE_BID buyer1 A1 17
+CREATE_BID buyer2 A1 15
+UPDATE_BID buyer2 A1 19
+CREATE_BID buyer3 A1 19
+CLOSE_AUCTION A1
+//winner buyer1
+CREATE_BID buyer1 A2 5
+// invalid: budget exceeds
+CREATE_BID buyer3 A2 25
+// invalid: exceeds auction bid limits
+CREATE_BID buyer2 A2 5
+WITHDRAW_BID buyer2 A2
+CLOSE_AUCTION A2
+//no winner
+
+
